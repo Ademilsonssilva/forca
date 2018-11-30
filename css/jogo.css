@@ -1,0 +1,13 @@
+.campo_forca {
+    /* width: 30px; */
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 3px solid #007bff;
+    text-align: center;
+    color: #007bff;
+    margin: 2px;
+}
+
+#dica {
+
+}

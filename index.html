@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/jogo.css">
+
+    <title>Forca</title>
+  </head>
+  <body>
+
+    <!-- CONTEUDO -->
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+
+            <button id="inicia_jogo" class="btn btn-success btn-sm">Iniciar!</button>
+            <div class="jogo" id="div_jogo" style="display: none;">
+
+                <br><br>
+                <div id="dica"></div>
+                <br><br>
+                <div style="text-align: center;">
+                    <div id="forca"></div>
+                </div>
+                <br><br>
+                <div id="jogadas"></div>
+                <br>
+                <div id="jogar">
+                    <strong> Jogar: </strong> <input type="text" size="1" maxlength="1" id="jogada">
+                </div> 
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.min.js"></script>
+    <script src="js/forca.js"></script>
+    <script src="js/jogo.js"></script>
+  </body>
+</html>
