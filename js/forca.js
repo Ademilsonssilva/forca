@@ -16,7 +16,7 @@ function Forca() {
             this.array_resposta = this.resposta.toUpperCase().split('');
             this.jogadas = []; // Armazena as letras escolhidas pelo jogador 
 
-            this.vidas = 5;
+            this.vidas = 6;
 
             this._div_dica = div.find('#dica');
             this._div_forca = div.find('#forca');
@@ -151,7 +151,30 @@ function Forca() {
             {
                 'dica': 'Glândula produtora de hormônios nos seres humanos',
                 'resposta': 'hipofise',
-            }
+            },
+            {
+                'dica': 'Momento em que o sol se encontra mais próximo da terra',
+                'resposta': 'perielio',
+            },
+            {
+                'dica': 'Hipótese que diz que a vida se originou na terra sendo trazida por asteróides ou meteóros',
+                'resposta': 'panspermia',
+            },
+            {
+                'dica': 'Passagem do estado de matéria sólido direto para o gasoso',
+                'resposta': 'sublimaçao',
+            },
+            {
+                'dica': 'Esquema econômico criminoso que usa conceitos de marketing multinivel',
+                'resposta': 'piramide',
+            },
+            {
+                'dica': 'Vencedor do nobel de física, também conhecido como "Pai da mecânica quântica"',
+                'resposta': 'heisenberg',
+            },
+            
+            
+            
 
         ],
     

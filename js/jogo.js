@@ -11,6 +11,8 @@ $(document).ready(function () {
             jogo.realizaJogada($('#jogada').val());
             $('#jogada').val('');
 
+            mostraImagem();
+
             if(jogo.fim_jogo) {
 
                 $('#jogada').unbind('blur');
@@ -39,6 +41,8 @@ $(document).ready(function () {
         jogo = Forca();
 
         jogo.iniciaJogo($('.jogo'));
+
+        mostraImagem();
     
         $('body').bind('keypress', function (event) {
             if(event.which == 13) { 
@@ -49,6 +53,11 @@ $(document).ready(function () {
         $("#jogada").blur(function () {
             eventoJogada();
         });
+    }
+
+    function mostraImagem()
+    {
+        $('#img_forca').attr('src', 'img/'+jogo.vidas+'vidas.jpg');
     }
 
 });
