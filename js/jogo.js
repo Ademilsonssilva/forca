@@ -1,6 +1,14 @@
 $(document).ready(function () {
 
+    if(localStorage.getItem('forca_nome_usuario') != '') {
+        $('#nome_jogador').val(localStorage.getItem('forca_nome_usuario'));
+    }
+
     $('#inicia_jogo').on('click', function () {
+        if($('#nome_jogador').val() != '') {
+            localStorage.setItem('forca_nome_usuario', $('#nome_jogador').val());
+        }
+
         iniciaJogo();
     });
 
@@ -24,6 +32,7 @@ $(document).ready(function () {
                 else {
                     swal('Ops', 'Você perdeu!', 'error');
                 }
+                console.log(jogo.resumoJogo());
                 $('#inicia_jogo').show();
 
             }
@@ -41,6 +50,8 @@ $(document).ready(function () {
         jogo = Forca();
 
         jogo.iniciaJogo($('.jogo'));
+
+        jogo.setJogador($('#nome_jogador').val());        
 
         mostraImagem();
     

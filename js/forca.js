@@ -8,6 +8,10 @@ function Forca() {
 
         },
 
+        setJogador: function (jogador) {
+            this.jogador = jogador;
+        },
+
         iniciaJogo: function (div) 
         {
 
@@ -130,8 +134,22 @@ function Forca() {
             this.resultado = resultado;
         },
 
+        resumoJogo: function ()
+        {
+            if(this.fim_jogo) {
+
+                return JSON.stringify({
+                    jogador: this.jogador,
+                    pergunta: this.jogo_ativo,
+                    jogadas: this.jogadas,
+                    resultado: this.resultado,
+                });
+
+            }
+        },
+
         _jogosDisponiveis: [
-            
+
             {
                 'dica': 'Era geologica em que ocorre o surgimento dos dinossauros',
                 'resposta': 'mesozoica',
