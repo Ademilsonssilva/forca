@@ -172,9 +172,46 @@ function Forca() {
                 'dica': 'Vencedor do nobel de física, também conhecido como "Pai da mecânica quântica"',
                 'resposta': 'heisenberg',
             },
-            
-            
-            
+            {
+                'dica': 'Tipo de partícula que compõe os prótons',
+                'resposta': 'quark',
+            },
+            {
+                'dica': 'Linguagem de programação',
+                'resposta': 'lisp'
+            },
+            {
+                'dica': 'Elemento químico usado em bombas nucleares',
+                'resposta': 'plutonio',
+            },
+            {
+                'dica': 'Personagem da DC Comics com poderes praticamente ilimitados',
+                'resposta': 'DrManhattan',
+            },
+            {
+                'dica': 'Capacidade hipotética de manipular a matéria com a mente',
+                'resposta': 'telecinese',
+            },
+            {
+                'dica': 'Estado psicológico em que a pessoa acredita ser portadora de doenças graves',
+                'resposta': 'hipocondria',
+            },
+            {
+                'dica': 'Medo de palhaços',
+                'resposta': 'coulrofobia',
+            },
+            {
+                'dica': 'Ultima camada da atmosfera',
+                'resposta': 'exosfera',
+            },
+            {
+                'dica': 'Lei de Newton',
+                'resposta': 'inercia',
+            },
+            {
+                'dica': 'Componente da placa mãe de um computador',
+                'resposta': 'chipset',
+            },           
 
         ],
     
