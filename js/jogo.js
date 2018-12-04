@@ -12,6 +12,28 @@ $(document).ready(function () {
         iniciaJogo();
     });
 
+    $(document).on('click', '.estrela', function () {
+
+        nota = parseInt($(this).attr('avaliacao'));
+
+        alert(nota);
+
+        // $.ajax({
+        //     url: 'http://localhost:8000',
+        //     method: 'POST',
+        //     data: {
+        //         jogador: jogo.jogador,
+        //         jogo: jogo.resumoJogo(),
+        //         pergunta: jogo.pergunta.id,
+        //         avaliacao: nota,
+        //     },
+        //     success: function () {
+
+        //     },
+        // });
+
+    });
+
     function eventoJogada()
     {
         if($('#jogada').val() != '') {
@@ -27,11 +49,14 @@ $(document).ready(function () {
                 $('body').unbind('keypress');
 
                 if(jogo.resultado == 'vitoria') {
-                    swal('Uau', 'Você venceu', 'success');
+                    msg = 'Você venceu';
                 }
                 else {
-                    swal('Ops', 'Você perdeu!', 'error');
+                    msg = 'Você perdeu!';
+                    jogo.atualizaTela(true); // Mostra os erros
                 }
+
+                avaliar(msg, jogo.resultado);
                 console.log(jogo.resumoJogo());
                 $('#inicia_jogo').show();
 
@@ -71,4 +96,43 @@ $(document).ready(function () {
         $('#img_forca').attr('src', 'img/'+jogo.vidas+'vidas.jpg');
     }
 
+    function avaliar(mensagem, resultado)
+    {
+        icone = resultado == 'vitoria' ? 'success' : 'error';
+
+        inputs_avaliacao = '';
+        for (i = 0; i < 5; i++) {
+
+            inputs_avaliacao += "<a class='fas fa-star fa-lg estrela' avaliacao='" + i + "'></a>";
+
+        }
+
+        return alerta = swal({
+            'title': 'Fim de jogo',
+            'html': '<h1>'+mensagem+'</h1><br>' + inputs_avaliacao,
+            'type': icone,
+        });
+    }
+
+    $(document).on({
+		mouseenter: function(){
+
+            nota = $(this).attr('avaliacao');
+
+            $('.estrela').each(function () {
+                if($(this).attr('avaliacao') <= nota) {
+                    $(this).addClass('amarelo');
+                }
+            })
+		},
+		mouseleave: function(){
+            $('.estrela').each(function () {
+                $(this).removeClass('amarelo');
+            });
+            
+
+		}
+	}, '.estrela');
+
 });
+

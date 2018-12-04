@@ -7,6 +7,24 @@
     color: #007bff;
     margin: 2px;
 }
+.nao-respondido {
+    color: red !important;
+}
+
+.estrela {
+    color: #007bff !important;
+    font-size: 28px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.estrela:hover {
+    color: yellow !important;
+}
+
+.amarelo {
+    color: yellow !important;
+}
 
 #dica {
 

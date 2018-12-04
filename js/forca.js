@@ -39,7 +39,7 @@ function Forca() {
 
         },
 
-        atualizaTela: function () 
+        atualizaTela: function (mostraErros = false) 
         {
             this._div_forca.html('');
 
@@ -51,13 +51,22 @@ function Forca() {
 
             for (i = 0; i < this.array_resposta.length; i++) {
 
-                letra = $.inArray(this.array_resposta[i].toUpperCase(), this.jogadas) > -1 ? this.array_resposta[i].toUpperCase() : '';
+                letraAtual = this.array_resposta[i].toUpperCase();
+
+                letra = $.inArray(letraAtual, this.jogadas) > -1 ? letraAtual : '';
 
                 acertos = letra != '' ? acertos+1 : acertos;
-
-                this._div_forca.append(
-                    $("<input type='text' class='campo_forca' disabled style='width: " + tamanho + "%; font-size: "+tamanho*2+"px; font-weight: bold;' value='" + letra + "'></input>")
-                )
+                
+                if(!mostraErros) {
+                    this._div_forca.append(
+                        $("<input type='text' class='campo_forca' disabled style='width: " + tamanho + "%; font-size: "+tamanho*2+"px; font-weight: bold;' value='" + letra + "'></input>")
+                    )
+                }
+                else {
+                    this._div_forca.append(
+                        $("<input type='text' class='campo_forca "+ (letraAtual != letra ? 'nao-respondido' : '')  +"' disabled style='width: " + tamanho + "%; font-size: "+tamanho*2+"px; font-weight: bold;' value='" + letraAtual + "'></input>")
+                    )
+                }
 
                 if(acertos == this.array_resposta.length) {
                     this.fimJogo('vitoria');
@@ -151,82 +160,102 @@ function Forca() {
         _jogosDisponiveis: [
 
             {
+                'id': 1,
                 'dica': 'Era geologica em que ocorre o surgimento dos dinossauros',
                 'resposta': 'mesozoica',
             },
             {
+                'id': 2,
                 'dica': 'Condição biológica desenvolvida quando dois óvulos fecundados se unem no momento da gestação animal',
                 'resposta': 'quimerismo',
             },
             {
+                'id': 3,
                 'dica': 'Sistema estelar mais proximo do Sistema Solar',
                 'resposta': 'alphacentauri',
             },
             {
+                'id': 4,
                 'dica': 'Nome da colocação pronominal existente na oração "dar-lhe-ei a resposta"',
                 'resposta': 'mesoclise',
             },
             {
+                'id': 5,
                 'dica': 'Glândula produtora de hormônios nos seres humanos',
                 'resposta': 'hipofise',
             },
             {
+                'id': 6,
                 'dica': 'Momento em que o sol se encontra mais próximo da terra',
                 'resposta': 'perielio',
             },
             {
+                'id': 7,
                 'dica': 'Hipótese que diz que a vida se originou na terra sendo trazida por asteróides ou meteóros',
                 'resposta': 'panspermia',
             },
             {
+                'id': 8,
                 'dica': 'Passagem do estado de matéria sólido direto para o gasoso',
                 'resposta': 'sublimaçao',
             },
             {
+                'id': 9,
                 'dica': 'Esquema econômico criminoso que usa conceitos de marketing multinivel',
                 'resposta': 'piramide',
             },
             {
+                'id': 10,
                 'dica': 'Vencedor do nobel de física, também conhecido como "Pai da mecânica quântica"',
                 'resposta': 'heisenberg',
             },
             {
+                'id': 11,
                 'dica': 'Tipo de partícula que compõe os prótons',
                 'resposta': 'quark',
             },
             {
+                'id': 12,
                 'dica': 'Linguagem de programação',
                 'resposta': 'lisp'
             },
             {
+                'id': 13,
                 'dica': 'Elemento químico usado em bombas nucleares',
                 'resposta': 'plutonio',
             },
             {
+                'id': 14,
                 'dica': 'Personagem da DC Comics com poderes praticamente ilimitados',
                 'resposta': 'DrManhattan',
             },
             {
+                'id': 15,
                 'dica': 'Capacidade hipotética de manipular a matéria com a mente',
                 'resposta': 'telecinese',
             },
             {
+                'id': 16,
                 'dica': 'Estado psicológico em que a pessoa acredita ser portadora de doenças graves',
                 'resposta': 'hipocondria',
             },
             {
+                'id': 17,
                 'dica': 'Medo de palhaços',
                 'resposta': 'coulrofobia',
             },
             {
+                'id': 18,
                 'dica': 'Ultima camada da atmosfera',
                 'resposta': 'exosfera',
             },
             {
+                'id': 19,
                 'dica': 'Lei de Newton',
                 'resposta': 'inercia',
             },
             {
+                'id': 20,
                 'dica': 'Componente da placa mãe de um computador',
                 'resposta': 'chipset',
             },           
