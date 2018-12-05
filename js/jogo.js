@@ -101,12 +101,18 @@ $(document).ready(function () {
 
                 avaliar(msg, jogo.resultado);
                 console.log(jogo.resumoJogo());
-                $('#inicio').show();
+                $('#voltar_inicio').show();
 
             }
 
         }
     }
+
+    $('#voltar_inicio').click(function () {
+        $(this).hide();
+        $('#div_jogo').hide();
+        $('#inicio').show();
+    });
 
     function iniciaJogo()
     {
