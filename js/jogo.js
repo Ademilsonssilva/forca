@@ -102,6 +102,7 @@ $(document).ready(function () {
                 avaliar(msg, jogo.resultado);
                 console.log(jogo.resumoJogo());
                 $('#voltar_inicio').show();
+                $('#jogar').hide();
 
             }
 
