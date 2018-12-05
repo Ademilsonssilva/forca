@@ -12,10 +12,13 @@ function Forca() {
             this.jogador = jogador;
         },
 
+        setApiUrl: function (url) {
+            this.api_url = url;
+        },
+
         iniciaJogo: function (div) 
         {
 
-            this.jogo_ativo = this._sorteiaJogo(); // Escolhe um jogo aleatório entre os disponíveis
             this.resposta = this.jogo_ativo.resposta; // Armazena a resposta certa (apenas para facilitar o acesso)
             this.array_resposta = this.resposta.toUpperCase().split('');
             this.jogadas = []; // Armazena as letras escolhidas pelo jogador 
@@ -28,6 +31,17 @@ function Forca() {
 
             this.mostraTela();
 
+        },
+
+        getPergunta: function () 
+        {
+            if(this.api_url != '') {
+
+                this.jogo_ativo = this.getPerguntaAleatoria();
+            }
+            else {
+                this.jogo_ativo = this._sorteiaJogo(); // Escolhe um jogo aleatório entre os disponíveis   
+            }
         },
 
         mostraTela: function () 
@@ -153,6 +167,63 @@ function Forca() {
                     jogadas: this.jogadas,
                     resultado: this.resultado,
                 });
+
+            }
+        },
+
+        getPerguntaAleatoria: function () {
+            var pergunta = '';
+
+            try{
+
+                $.ajax({
+                    url: this.api_url + '/pergunta_aleatoria',
+                    method: 'POST',
+                    async: false,
+                    data: {
+
+                    },
+                    success: function (response){
+                        pergunta = response;
+                    },
+                    error: function (){
+                        pergunta = false;
+                    }
+                })
+
+                if(!pergunta) {
+                    console.log('Sem conexão com a base! Usando perguntas default');
+                    return this._sorteiaJogo();
+                }
+
+                return pergunta;
+
+            }
+            catch(erro){
+                return this._sorteiaJogo();
+            }
+        },
+
+        //Função responsavel por popular os dados no banco (Usa-la mais de uma vez vai duplicar os registros)
+        _popularBanco: function () {
+
+            for(i=0; i < this._jogosDisponiveis.length; i++) {
+
+                var registro = this._jogosDisponiveis[i];
+
+                $.ajax({
+                    url: this.api_url + '/adicionar',
+                    method: 'POST',
+                    data: {
+                        dica: registro.dica,
+                        resposta: registro.resposta,
+                        email_criador: 'ademilsonssilva1@gmail.com',
+                    }, 
+                    success: function (response) 
+                    {
+                        console.log(registro.dica + ' - OK');
+                    }
+                })
 
             }
         },

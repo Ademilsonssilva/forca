@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var API_URL = 'http://localhost:8000/forca';
+
     if(localStorage.getItem('forca_nome_usuario') != '') {
         $('#nome_jogador').val(localStorage.getItem('forca_nome_usuario'));
     }
@@ -16,22 +18,63 @@ $(document).ready(function () {
 
         nota = parseInt($(this).attr('avaliacao'));
 
-        alert(nota);
+        swal.close();
 
-        // $.ajax({
-        //     url: 'http://localhost:8000',
-        //     method: 'POST',
-        //     data: {
-        //         jogador: jogo.jogador,
-        //         jogo: jogo.resumoJogo(),
-        //         pergunta: jogo.pergunta.id,
-        //         avaliacao: nota,
-        //     },
-        //     success: function () {
+        $.ajax({
+            url: jogo.api_url+'/registrar_jogo',
+            method: 'POST',
+            data: {
+                jogador: jogo.jogador,
+                resumo_jogo: jogo.resumoJogo(),
+                pergunta_id: jogo.jogo_ativo.id,
+                resultado: jogo.resultado,
+                nota: nota,
+            },
+            success: function (response) {
+                console.log(response)
+            },
+            error: function () {
 
-        //     },
-        // });
+            },
+        });
 
+    });
+
+    $('#cadastrar_nova_pergunta').on('click', function () {
+
+        if($('#form_dica').val() == '' || $('#form_resposta').val() == '' || $('#form_email_criador').val() == '') {
+            swal('Ops', 'Preencha todas as informações antes de prosseguir', 'warning');
+            return false;
+        }
+
+        $.ajax({
+            url: API_URL + '/adicionar',
+            method: 'POST',
+            data: {
+                dica: $('#form_dica').val(),
+                resposta: $('#form_resposta').val(),
+                email_criador: $('#form_email_criador').val(),
+            },
+            success: function (response) {
+                swal({
+                    html: 'Pergunta gravada com sucesso!',
+                    toast: true,
+                    timer: 2000,
+                })
+                console.log(response);
+            },
+            error: function (error) {
+                swal('Ops', 'Ocorreu um erro inesperado!', 'error');
+            }
+        });
+
+        $('#form_cadastrar').hide();
+        $('#inicio').show();
+    });
+
+    $('#nova_pergunta').on('click', function () {
+        $('#inicio').hide();
+        $('#form_cadastrar').show();
     });
 
     function eventoJogada()
@@ -58,7 +101,7 @@ $(document).ready(function () {
 
                 avaliar(msg, jogo.resultado);
                 console.log(jogo.resumoJogo());
-                $('#inicia_jogo').show();
+                $('#inicio').show();
 
             }
 
@@ -68,11 +111,17 @@ $(document).ready(function () {
     function iniciaJogo()
     {
         $('#div_jogo').show();
-        $('#inicia_jogo').hide();
+        $('#inicio').hide();
         $('#jogada').val('');
         $('#jogada').focus();
 
         jogo = Forca();
+
+        jogo.setApiUrl(API_URL);
+
+        // jogo._popularBanco();
+
+        jogo.getPergunta();
 
         jogo.iniciaJogo($('.jogo'));
 
@@ -107,9 +156,11 @@ $(document).ready(function () {
 
         }
 
-        return alerta = swal({
-            'title': 'Fim de jogo',
-            'html': '<h1>'+mensagem+'</h1><br>' + inputs_avaliacao,
+        html_swal = 'A resposta era: <font color="red"><b> ' + jogo.resposta + ' </b></font><h2>Avalie a pergunta: </h2><br>';
+
+        var alerta = swal({
+            'title': mensagem,
+            'html': html_swal + inputs_avaliacao,
             'type': icone,
         });
     }
@@ -129,8 +180,7 @@ $(document).ready(function () {
             $('.estrela').each(function () {
                 $(this).removeClass('amarelo');
             });
-            
-
+        
 		}
 	}, '.estrela');
 
