@@ -13,9 +13,9 @@
 
 .estrela {
     color: #007bff !important;
-    font-size: 28px;
-    padding: 10px;
-    margin: 10px;
+    font-size: 22px;
+    padding: 8px;
+    margin: 8px;
 }
 
 .estrela:hover {

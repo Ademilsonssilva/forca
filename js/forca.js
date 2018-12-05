@@ -136,7 +136,12 @@ function Forca() {
 
             else {
 
-                swal('Ops', 'Jogada já realizada', 'warning');
+                swal({
+                    html: 'Jogada já realizada',
+                    type: 'warning',
+                    toast: true,
+                    timer: 1000,
+                });
 
             }
 
