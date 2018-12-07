@@ -131,6 +131,7 @@ $(document).ready(function () {
         $('#inicio').hide();
         $('#jogada').val('');
         $('#jogada').show();
+        $('#jogar').show();
         $('#jogada').focus();
 
         jogo = Forca();
@@ -173,8 +174,13 @@ $(document).ready(function () {
             inputs_avaliacao += "<a class='fas fa-star fa-lg estrela' avaliacao='" + i + "'></a>";
 
         }
-
-        html_swal = 'A resposta era: <font color="red"><b> ' + jogo.resposta + ' </b></font><h2>Avalie a pergunta: </h2><br>';
+        html_swal = '';
+        
+        if(resultado != 'vitoria') {
+            html_swal += 'A resposta era: <font color="red"><b> ' + jogo.resposta + ' </b></font>';
+        }
+        
+        html_swal += '<h2>Avalie a pergunta: </h2><br>';
 
         var alerta = swal({
             'title': mensagem,
