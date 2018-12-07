@@ -16,7 +16,7 @@
 
     <!-- CONTEUDO -->
 
-    <div class="row" id="inicio">
+    <div class="row tela" id="inicio">
         <div class="menu col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-2">
             <div class="form-group" style="margin: 15px;">
                 <label for="nome_jogador">Insira o seu nome(Opcional) </label>
@@ -38,17 +38,18 @@
         </div>
     </div>
 
-    <div class="row" id="voltar_inicio" style="display: none; text-align: center;">
-        <br>
-        <center>
-            <button id="voltar_inicio_button" class="btn btn-success">Voltar ao início</button>
-        </center>
+    <div class="row tela" id="voltar_inicio" style="display: none;">
+        <div class="col-sm-6 col-12" style="text-align: center;">
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="voltar_inicio_button" class="btn btn-success">Voltar ao início</button>
+            </div>
+        </div>
     </div>
 
     <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-2">
-        <div class="row" id="form_cadastrar" style="display: none;">
+        <div class="row tela" id="form_cadastrar" style="display: none;">
              
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 form-group">
+            <div class="col-12 col-sm-6 form-group">
                 <label for="form_email_criador">Email: (Obrigatório para cadastrar pergunta)</label>
                 <input type="text" id="form_email_criador" class="form-control">
             </div>
@@ -67,13 +68,14 @@
             <div class="col-sm-12">
                 <div class="form-group" style="text-align: center;">
                     <button id="cadastrar_nova_pergunta" class="btn btn-success">Cadastrar</button>
+                    <button class="btn btn-success voltar_inicio">Voltar</button>
                 </div>
             </div>
             
         </div>
     </div>
 
-    <div class="row" id="div_jogo" style="display: none;">
+    <div class="row tela" id="div_jogo" style="display: none;">
 
         <div class="col-xs-12 col-sm-6">
 

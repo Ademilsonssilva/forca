@@ -6,12 +6,20 @@ $(document).ready(function () {
         $('#nome_jogador').val(localStorage.getItem('forca_nome_usuario'));
     }
 
+    if(localStorage.getItem('form_email_criador') != '') {
+        $('#form_email_criador').val(localStorage.getItem('form_email_criador'));
+    }
+
     $('#inicia_jogo').on('click', function () {
         if($('#nome_jogador').val() != '') {
             localStorage.setItem('forca_nome_usuario', $('#nome_jogador').val());
         }
 
         iniciaJogo();
+    });
+
+    $('.voltar_inicio').on('click', function () {
+        telainicio();
     });
 
     $(document).on('click', '.estrela', function () {
@@ -46,6 +54,8 @@ $(document).ready(function () {
             swal('Ops', 'Preencha todas as informações antes de prosseguir', 'warning');
             return false;
         }
+
+        localStorage.setItem('form_email_criador', $('#form_email_criador').val());
 
         $.ajax({
             url: API_URL + '/adicionar',
@@ -120,6 +130,7 @@ $(document).ready(function () {
         $('#div_jogo').show();
         $('#inicio').hide();
         $('#jogada').val('');
+        $('#jogada').show();
         $('#jogada').focus();
 
         jogo = Forca();
@@ -189,7 +200,13 @@ $(document).ready(function () {
             });
         
 		}
-	}, '.estrela');
+    }, '.estrela');
+
+    function telainicio()
+    {
+        $('.tela').hide();
+        $('#inicio').show();
+    }
 
 });
 
