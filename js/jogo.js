@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var API_URL = 'http://localhost:8000/forca';
+    var API_URL = 'http://ademilsonssilva.com.br/gameScores/public/forca';
 
     if(localStorage.getItem('forca_nome_usuario') != '') {
         $('#nome_jogador').val(localStorage.getItem('forca_nome_usuario'));
