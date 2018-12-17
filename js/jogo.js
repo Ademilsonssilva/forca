@@ -14,8 +14,18 @@ $(document).ready(function () {
         if($('#nome_jogador').val() != '') {
             localStorage.setItem('forca_nome_usuario', $('#nome_jogador').val());
         }
-
-        iniciaJogo();
+        if($('#nome_jogador').val() == '') {
+            swal({
+                toast: true,
+                type: 'warning',
+                position: 'center',
+                html: 'Preencha o nome!',
+                timer: 1500,
+            });
+        }
+        else {
+            iniciaJogo();    
+        }
     });
 
     $('.voltar_inicio').on('click', function () {
@@ -25,6 +35,16 @@ $(document).ready(function () {
     $(document).on('click', '.estrela', function () {
 
         nota = parseInt($(this).attr('avaliacao'));
+
+        ajaxAvaliar(nota);
+
+    });
+
+    function ajaxAvaliar(nota)
+    {
+        if(nota == '') {
+            nota = 0;
+        }
 
         swal.close();
 
@@ -45,8 +65,7 @@ $(document).ready(function () {
 
             },
         });
-
-    });
+    }
 
     $('#cadastrar_nova_pergunta').on('click', function () {
 
@@ -183,9 +202,12 @@ $(document).ready(function () {
         html_swal += '<h2>Avalie a pergunta: </h2><br>';
 
         var alerta = swal({
-            'title': mensagem,
-            'html': html_swal + inputs_avaliacao,
-            'type': icone,
+            title: mensagem,
+            html: html_swal + inputs_avaliacao,
+            type: icone,
+            onClose: () => {
+                ajaxAvaliar(0);
+            }
         });
     }
 
